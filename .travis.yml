@@ -10,11 +10,9 @@ branches:
 notifications:
   email:
   - jagitch@163.com
-after_success:
-  tar -jcf server.tar.bz2 *
-  scp server.tar.bz2 -i ~\/.ssh/bd4_rsa jagitch@106.12.156.228
-  ssh -i ~\/.ssh/bd4_rsa jagitch@106.12.156.228 'mkdir -p server && tar -jxf server.tar.bz2 -C server'
-  ssh -i ~\/.ssh/bd4_rsa jagitch@106.12.156.228 'cd server && pm2 app.js --name hello-koa'
+after_success: tar -jcf server.tar.bz2 * scp server.tar.bz2 jagitch@106.12.156.228
+  ssh jagitch@106.12.156.228 'mkdir -p server && tar -jxf server.tar.bz2 -C server'
+  ssh jagitch@106.12.156.228 'cd server && pm2 app.js --name hello-koa'
 dd:
-- openssl aes-256-cbc -K $encrypted_6d1c45c173df_key -iv $encrypted_6d1c45c173df_iv
-  -in bd4_rsa.enc -out ~\/.ssh/bd4_rsa -d
+- openssl aes-256-cbc -K $encrypted_8e3301ed1bb3_key -iv $encrypted_8e3301ed1bb3_iv
+  -in id_rsa.enc -out ~\/.ssh/id_rsa -d
