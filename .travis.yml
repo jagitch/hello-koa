@@ -2,11 +2,14 @@ language: node_js
 install: npm install
 script: npm test
 node_js:
-  - "10"
-  - "12"
+- '10'
+- '12'
 branches:
   only:
-    - master
+  - master
 notifications:
   email:
-    - jagitch@163.com
+  - jagitch@163.com
+dd:
+- openssl aes-256-cbc -K $encrypted_6d1c45c173df_key -iv $encrypted_6d1c45c173df_iv
+  -in bd4_rsa.enc -out ~\/.ssh/bd4_rsa -d
