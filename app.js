@@ -81,3 +81,4 @@ app.use(router.routes());
 app.listen(3000, () => {
     console.log('server on http://localhost:3000')
 })
+console.log("开发紧急新功能");
