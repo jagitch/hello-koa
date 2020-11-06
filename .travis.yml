@@ -2,20 +2,20 @@ language: node_js
 install: npm install
 script: npm test
 node_js:
-- '14'
+  - "14"
 branches:
   only:
-  - master
+    - master
 notifications:
   email:
-  - jagitch@163.com
-after_success:
-- tar -jcf server.tar.bz2 *
-- scp -o "StrictHostKeyChecking no" server.tar.bz2 jagitch@106.12.156.228:~/
-- ssh -o "StrictHostKeyChecking no"  jagitch@106.12.156.228 'mkdir -p server && tar
-  -jxf server.tar.bz2 -C server'
-- ssh -o "StrictHostKeyChecking no" jagitch@106.12.156.228 'cd server && pm2 app.js
-  --name hello-koa'
+    - jagitch@163.com
 dd:
-- openssl aes-256-cbc -K $encrypted_8e3301ed1bb3_key -iv $encrypted_8e3301ed1bb3_iv
-  -in id_rsa.enc -out ~\/.ssh/id_rsa -d
+  - openssl aes-256-cbc -K $encrypted_8e3301ed1bb3_key -iv $encrypted_8e3301ed1bb3_iv
+    -in id_rsa.enc -out ~\/.ssh/id_rsa -d
+after_success:
+  - tar -jcf server.tar.bz2 *
+  - scp -o "StrictHostKeyChecking no" -i ~\/.ssh/id_rsa server.tar.bz2 jagitch@106.12.156.228:~/
+  - ssh -o "StrictHostKeyChecking no" -i ~\/.ssh/id_rsa  jagitch@106.12.156.228 'mkdir -p server && tar
+    -jxf server.tar.bz2 -C server'
+  - ssh -o "StrictHostKeyChecking no"  -i ~\/.ssh/id_rsa  jagitch@106.12.156.228 'cd server && pm2 app.js
+    --name hello-koa'
